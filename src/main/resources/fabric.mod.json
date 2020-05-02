@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "riverredux",
+  "version": "0.1.0",
+  "name": "RiverRedux",
+  "description": "Improves Minecraft's river biomes!",
+  "authors": [
+    "SuperCoder79"
+  ],
+  "license": "LGPLv3",
+  "icon": "assets/riverredux/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "supercoder79.riverredux.RiverRedux"
+    ]
+  },
+  "mixins": [
+    "riverredux.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.8.2+build.194",
+    "fabric": "*",
+    "minecraft": "1.15.2"
+  }
+}
