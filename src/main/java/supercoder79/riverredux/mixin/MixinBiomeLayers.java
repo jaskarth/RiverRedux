@@ -42,10 +42,21 @@ public abstract class MixinBiomeLayers {
     @Redirect(method = "build(Lnet/minecraft/world/level/LevelGeneratorType;Lnet/minecraft/world/gen/chunk/OverworldChunkGeneratorConfig;Ljava/util/function/LongFunction;)Lnet/minecraft/world/biome/layer/util/LayerFactory;",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/biome/layer/BiomeLayers;stack(JLnet/minecraft/world/biome/layer/type/ParentedLayer;Lnet/minecraft/world/biome/layer/util/LayerFactory;ILjava/util/function/LongFunction;)Lnet/minecraft/world/biome/layer/util/LayerFactory;", ordinal = 5))
     private static <T extends LayerSampler, C extends LayerSampleContext<T>> LayerFactory<T> scaleMore(long seed, ParentedLayer layer, LayerFactory<T> parent, int count, LongFunction<C> contextProvider) {
-        LayerFactory<T> stack = stack(seed, layer, parent, 2, contextProvider);
-        stack = SmoothenShorelineLayer.INSTANCE.create((LayerSampleContext<T>)biomeContext.apply(46L), stack);
-        stack = SmoothenShorelineLayer.INSTANCE.create((LayerSampleContext<T>)biomeContext.apply(47L), stack);
-        return stack;
+        parent = SmoothenShorelineLayer.INSTANCE.create((LayerSampleContext<T>)biomeContext.apply(41L), parent);
+        parent = SmoothenShorelineLayer.INSTANCE.create((LayerSampleContext<T>)biomeContext.apply(42L), parent);
+        parent = stack(seed, layer, parent, 2, contextProvider);
+        parent = SmoothenShorelineLayer.INSTANCE.create((LayerSampleContext<T>)biomeContext.apply(46L), parent);
+        parent = SmoothenShorelineLayer.INSTANCE.create((LayerSampleContext<T>)biomeContext.apply(47L), parent);
+        return parent;
+    }
+
+    @Redirect(method = "build(Lnet/minecraft/world/level/LevelGeneratorType;Lnet/minecraft/world/gen/chunk/OverworldChunkGeneratorConfig;Ljava/util/function/LongFunction;)Lnet/minecraft/world/biome/layer/util/LayerFactory;",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/biome/layer/BiomeLayers;stack(JLnet/minecraft/world/biome/layer/type/ParentedLayer;Lnet/minecraft/world/biome/layer/util/LayerFactory;ILjava/util/function/LongFunction;)Lnet/minecraft/world/biome/layer/util/LayerFactory;", ordinal = 6))
+    private static <T extends LayerSampler, C extends LayerSampleContext<T>> LayerFactory<T> scaleRiverVar(long seed, ParentedLayer layer, LayerFactory<T> parent, int count, LongFunction<C> contextProvider) {
+        parent = SmoothenShorelineLayer.INSTANCE.create((LayerSampleContext<T>)biomeContext.apply(51L), parent);
+        parent = stack(seed, layer, parent, count, contextProvider);
+        parent = SmoothenShorelineLayer.INSTANCE.create((LayerSampleContext<T>)biomeContext.apply(44L), parent);
+        return parent;
     }
 
     @Redirect(method = "build(Lnet/minecraft/world/level/LevelGeneratorType;Lnet/minecraft/world/gen/chunk/OverworldChunkGeneratorConfig;Ljava/util/function/LongFunction;)Lnet/minecraft/world/biome/layer/util/LayerFactory;",
