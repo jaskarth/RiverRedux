@@ -8,10 +8,7 @@ import net.minecraft.world.biome.layer.type.ParentedLayer;
 import net.minecraft.world.biome.layer.util.LayerFactory;
 import net.minecraft.world.biome.layer.util.LayerSampleContext;
 import net.minecraft.world.biome.layer.util.LayerSampler;
-import net.minecraft.world.gen.chunk.OverworldChunkGeneratorConfig;
-import net.minecraft.world.level.LevelGeneratorType;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -33,13 +30,13 @@ public abstract class MixinBiomeLayers {
 
     private static LongFunction biomeContext;
 
-    @Inject(method = "build(Lnet/minecraft/world/level/LevelGeneratorType;Lnet/minecraft/world/gen/chunk/OverworldChunkGeneratorConfig;Ljava/util/function/LongFunction;)Lnet/minecraft/world/biome/layer/util/LayerFactory;",
+    @Inject(method = "build(ZIILjava/util/function/LongFunction;)Lnet/minecraft/world/biome/layer/util/LayerFactory;",
             at = @At("HEAD"))
-    private static <T extends LayerSampler, C extends LayerSampleContext<T>> void captureContext(LevelGeneratorType generatorType, OverworldChunkGeneratorConfig settings, LongFunction<C> contextProvider, CallbackInfoReturnable<LayerFactory<T>> cir) {
+    private static <T extends LayerSampler, C extends LayerSampleContext<T>> void captureContext(boolean old, int biomeSize, int riverSize, LongFunction<C> contextProvider, CallbackInfoReturnable<LayerFactory<T>> cir) {
         biomeContext = contextProvider;
     }
 
-    @Redirect(method = "build(Lnet/minecraft/world/level/LevelGeneratorType;Lnet/minecraft/world/gen/chunk/OverworldChunkGeneratorConfig;Ljava/util/function/LongFunction;)Lnet/minecraft/world/biome/layer/util/LayerFactory;",
+    @Redirect(method = "build(ZIILjava/util/function/LongFunction;)Lnet/minecraft/world/biome/layer/util/LayerFactory;",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/biome/layer/BiomeLayers;stack(JLnet/minecraft/world/biome/layer/type/ParentedLayer;Lnet/minecraft/world/biome/layer/util/LayerFactory;ILjava/util/function/LongFunction;)Lnet/minecraft/world/biome/layer/util/LayerFactory;", ordinal = 5))
     private static <T extends LayerSampler, C extends LayerSampleContext<T>> LayerFactory<T> scaleMore(long seed, ParentedLayer layer, LayerFactory<T> parent, int count, LongFunction<C> contextProvider) {
         parent = SmoothenShorelineLayer.INSTANCE.create((LayerSampleContext<T>)biomeContext.apply(41L), parent);
@@ -50,7 +47,7 @@ public abstract class MixinBiomeLayers {
         return parent;
     }
 
-    @Redirect(method = "build(Lnet/minecraft/world/level/LevelGeneratorType;Lnet/minecraft/world/gen/chunk/OverworldChunkGeneratorConfig;Ljava/util/function/LongFunction;)Lnet/minecraft/world/biome/layer/util/LayerFactory;",
+    @Redirect(method = "build(ZIILjava/util/function/LongFunction;)Lnet/minecraft/world/biome/layer/util/LayerFactory;",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/biome/layer/BiomeLayers;stack(JLnet/minecraft/world/biome/layer/type/ParentedLayer;Lnet/minecraft/world/biome/layer/util/LayerFactory;ILjava/util/function/LongFunction;)Lnet/minecraft/world/biome/layer/util/LayerFactory;", ordinal = 6))
     private static <T extends LayerSampler, C extends LayerSampleContext<T>> LayerFactory<T> scaleRiverVar(long seed, ParentedLayer layer, LayerFactory<T> parent, int count, LongFunction<C> contextProvider) {
         parent = SmoothenShorelineLayer.INSTANCE.create((LayerSampleContext<T>)biomeContext.apply(51L), parent);
@@ -59,7 +56,7 @@ public abstract class MixinBiomeLayers {
         return parent;
     }
 
-    @Redirect(method = "build(Lnet/minecraft/world/level/LevelGeneratorType;Lnet/minecraft/world/gen/chunk/OverworldChunkGeneratorConfig;Ljava/util/function/LongFunction;)Lnet/minecraft/world/biome/layer/util/LayerFactory;",
+    @Redirect(method = "build(ZIILjava/util/function/LongFunction;)Lnet/minecraft/world/biome/layer/util/LayerFactory;",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/biome/layer/NoiseToRiverLayer;create(Lnet/minecraft/world/biome/layer/util/LayerSampleContext;Lnet/minecraft/world/biome/layer/util/LayerFactory;)Lnet/minecraft/world/biome/layer/util/LayerFactory;"))
     private static <T extends LayerSampler, C extends LayerSampleContext<T>> LayerFactory<T> biggerRiver(NoiseToRiverLayer layer, LayerSampleContext<T> context, LayerFactory<T> parent) {
         parent = layer.create(context, parent);
