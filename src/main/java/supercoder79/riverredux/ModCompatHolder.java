@@ -13,8 +13,10 @@ public class ModCompatHolder {
     static {
         BIOME_TO_RIVER.put(traverse("mini_jungle"), RiverBiomes.TROPICAL);
         BIOME_TO_RIVER.put(traverse("desert_shrubland"), RiverBiomes.SANDY);
+        BIOME_TO_RIVER.put(traverse("arid_highlands"), RiverBiomes.SANDY);
         BIOME_TO_RIVER.put(traverse("coniferous_forest"), RiverBiomes.GRAVELLY);
         BIOME_TO_RIVER.put(traverse("coniferous_wooded_hills"), RiverBiomes.GRAVELLY);
+
         BIOME_TO_RIVER.put(vpb("red_desert"), RiverBiomes.CARVED);
         BIOME_TO_RIVER.put(vpb("red_desert_plateau"), RiverBiomes.CARVED);
         BIOME_TO_RIVER.put(vpb("oasis"), RiverBiomes.TROPICAL);
