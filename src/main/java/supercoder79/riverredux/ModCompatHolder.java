@@ -17,6 +17,14 @@ public class ModCompatHolder {
         BIOME_TO_RIVER.put(traverse("coniferous_forest"), RiverBiomes.GRAVELLY);
         BIOME_TO_RIVER.put(traverse("coniferous_wooded_hills"), RiverBiomes.GRAVELLY);
 
+        BIOME_TO_RIVER.put(terrestria("rainbow_rainforest"), RiverBiomes.TROPICAL);
+        BIOME_TO_RIVER.put(terrestria("rainbow_rainforest_lake"), RiverBiomes.TROPICAL);
+        BIOME_TO_RIVER.put(terrestria("rainbow_rainforest_mountains"), RiverBiomes.TROPICAL);
+        BIOME_TO_RIVER.put(terrestria("hemlock_rainforest"), RiverBiomes.GRAVELLY);
+        BIOME_TO_RIVER.put(terrestria("hemlock_rainforest_clearing"), RiverBiomes.GRAVELLY);
+        BIOME_TO_RIVER.put(terrestria("snowy_hemlock_rainforest"), RiverBiomes.GRAVELLY);
+        BIOME_TO_RIVER.put(terrestria("snowy_hemlock_rainforest_clearing"), RiverBiomes.GRAVELLY);
+
         BIOME_TO_RIVER.put(vpb("red_desert"), RiverBiomes.CARVED);
         BIOME_TO_RIVER.put(vpb("red_desert_plateau"), RiverBiomes.CARVED);
         BIOME_TO_RIVER.put(vpb("oasis"), RiverBiomes.TROPICAL);
@@ -31,11 +39,14 @@ public class ModCompatHolder {
         BIOME_TO_RIVER.put(vpb("mixed_taiga"), RiverBiomes.GRAVELLY);
         BIOME_TO_RIVER.put(vpb("tall_taiga"), RiverBiomes.GRAVELLY);
         BIOME_TO_RIVER.put(vpb("tall_pine_taiga"), RiverBiomes.GRAVELLY);
-        //TODO: terrestria
     }
 
     private static Identifier traverse(String name) {
         return new Identifier("traverse", name);
+    }
+
+    private static Identifier terrestria(String name) {
+        return new Identifier("terrestria", name);
     }
 
     private static Identifier vpb(String name) {
