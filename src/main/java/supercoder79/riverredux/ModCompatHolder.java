@@ -60,6 +60,8 @@ public class ModCompatHolder {
     }
 
     public static void tryInit(Identifier id) {
-        OverworldBiomes.setRiverBiome(Registry.BIOME.get(id), BIOME_TO_RIVER.get(id));
+        if (BIOME_TO_RIVER.containsKey(id)) {
+            OverworldBiomes.setRiverBiome(Registry.BIOME.get(id), BIOME_TO_RIVER.get(id));
+        }
     }
 }

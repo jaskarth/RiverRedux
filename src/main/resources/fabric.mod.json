@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "riverredux",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "name": "RiverRedux",
   "description": "Improves Minecraft's river biomes!",
   "authors": [
