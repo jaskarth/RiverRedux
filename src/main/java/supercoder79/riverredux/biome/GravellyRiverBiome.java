@@ -32,9 +32,9 @@ public class GravellyRiverBiome extends Biome {
                         .fogColor(12638463)
                         .moodSound(BiomeMoodSound.CAVE).build())
                 .parent(null));
-        this.addStructureFeature(Feature.MINESHAFT.configure(new MineshaftFeatureConfig(0.004D, MineshaftFeature.Type.NORMAL)));
+        this.addStructureFeature(DefaultBiomeFeatures.field_24688);
+        this.addStructureFeature(DefaultBiomeFeatures.field_24711);
         DefaultBiomeFeatures.addLandCarvers(this);
-        DefaultBiomeFeatures.addDefaultStructures(this);
         DefaultBiomeFeatures.addDefaultLakes(this);
         DefaultBiomeFeatures.addDungeons(this);
         DefaultBiomeFeatures.addMineables(this);

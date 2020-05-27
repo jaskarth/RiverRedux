@@ -41,7 +41,7 @@ public abstract class MixinBiomeLayers {
     private static <T extends LayerSampler, C extends LayerSampleContext<T>> LayerFactory<T> scaleMore(long seed, ParentedLayer layer, LayerFactory<T> parent, int count, LongFunction<C> contextProvider) {
         parent = SmoothenShorelineLayer.INSTANCE.create((LayerSampleContext<T>)biomeContext.apply(41L), parent);
         parent = SmoothenShorelineLayer.INSTANCE.create((LayerSampleContext<T>)biomeContext.apply(42L), parent);
-        parent = stack(seed, layer, parent, 2, contextProvider);
+        parent = stack(seed, layer, parent, count, contextProvider);
         parent = SmoothenShorelineLayer.INSTANCE.create((LayerSampleContext<T>)biomeContext.apply(46L), parent);
         parent = SmoothenShorelineLayer.INSTANCE.create((LayerSampleContext<T>)biomeContext.apply(47L), parent);
         return parent;
