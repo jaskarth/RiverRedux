@@ -34,8 +34,8 @@ public class TropicalRiverBiome extends Biome {
                         .moodSound(BiomeMoodSound.CAVE).build())
                 .parent(null));
         DefaultBiomeFeatures.addLandCarvers(this);
-        this.addStructureFeature(DefaultBiomeFeatures.field_24688);
-        this.addStructureFeature(DefaultBiomeFeatures.STANDARD_CONFIGURED_RUINED_PORTAL);
+        this.addStructureFeature(DefaultBiomeFeatures.NORMAL_MINESHAFT);
+        this.addStructureFeature(DefaultBiomeFeatures.STANDARD_RUINED_PORTAL);
         DefaultBiomeFeatures.addDefaultLakes(this);
         DefaultBiomeFeatures.addDungeons(this);
         DefaultBiomeFeatures.addMineables(this);
