@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "riverredux",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "name": "River Redux",
   "description": "Improves Minecraft's river biomes!",
   "authors": [
@@ -21,6 +21,6 @@
   "depends": {
     "fabricloader": ">=0.8.2+build.194",
     "fabric": "*",
-    "minecraft": ">=1.16-"
+    "minecraft": ">=1.17-"
   }
 }
