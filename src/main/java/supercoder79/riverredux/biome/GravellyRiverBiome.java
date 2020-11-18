@@ -5,23 +5,47 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
-import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
+import net.minecraft.world.biome.GenerationSettings;
+import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.decorator.DecoratorConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.MineshaftFeature;
-import net.minecraft.world.gen.feature.MineshaftFeatureConfig;
-import net.minecraft.world.gen.feature.SeagrassFeatureConfig;
+import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
+import supercoder79.riverredux.RiverBiomes;
 
-public class GravellyRiverBiome extends Biome {
+public class GravellyRiverBiome {
+    public static Biome create() {
+        SpawnSettings.Builder spawnSettings = new SpawnSettings.Builder()
+                .spawn(SpawnGroup.WATER_CREATURE, new SpawnSettings.SpawnEntry(EntityType.SQUID, 2, 1, 4))
+                .spawn(SpawnGroup.WATER_AMBIENT, new SpawnSettings.SpawnEntry(EntityType.SALMON, 5, 1, 5));
+        DefaultBiomeFeatures.addBatsAndMonsters(spawnSettings);
+        spawnSettings.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.DROWNED, 100, 1, 1));
 
-    public GravellyRiverBiome() {
-        super(new Settings()
-                .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRAVEL_CONFIG)
-                .precipitation(Precipitation.RAIN)
-                .category(Category.RIVER)
+        // TODO: register
+        GenerationSettings.Builder generationSettings = new GenerationSettings.Builder().surfaceBuilder(new ConfiguredSurfaceBuilder<>(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRAVEL_CONFIG));
+        generationSettings.structureFeature(ConfiguredStructureFeatures.MINESHAFT);
+        generationSettings.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL);
+        DefaultBiomeFeatures.addLandCarvers(generationSettings);
+        DefaultBiomeFeatures.addDefaultLakes(generationSettings);
+        DefaultBiomeFeatures.method_32236(generationSettings);
+        DefaultBiomeFeatures.addDungeons(generationSettings);
+        DefaultBiomeFeatures.addMineables(generationSettings);
+        DefaultBiomeFeatures.addDefaultOres(generationSettings);
+        DefaultBiomeFeatures.addDefaultDisks(generationSettings);
+        DefaultBiomeFeatures.addWaterBiomeOakTrees(generationSettings);
+        DefaultBiomeFeatures.addDefaultFlowers(generationSettings);
+        DefaultBiomeFeatures.addDefaultGrass(generationSettings);
+        DefaultBiomeFeatures.addDefaultMushrooms(generationSettings);
+        DefaultBiomeFeatures.addDefaultVegetation(generationSettings);
+        DefaultBiomeFeatures.addSprings(generationSettings);
+
+        DefaultBiomeFeatures.addFrozenTopLayer(generationSettings);
+
+        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SEAGRASS_RIVER);
+
+        return new Biome.Builder()
+                .precipitation(Biome.Precipitation.RAIN)
+                .category(Biome.Category.RIVER)
                 .depth(-0.5F)
                 .scale(0.0F)
                 .temperature(0.5F)
@@ -30,35 +54,8 @@ public class GravellyRiverBiome extends Biome {
                         .waterColor(4159204)
                         .waterFogColor(329011)
                         .fogColor(12638463)
+                        .skyColor(RiverBiomes.getSkyColor(0.5F))
                         .moodSound(BiomeMoodSound.CAVE).build())
-                .parent(null));
-        this.addStructureFeature(DefaultBiomeFeatures.NORMAL_MINESHAFT);
-        this.addStructureFeature(DefaultBiomeFeatures.STANDARD_RUINED_PORTAL);
-        DefaultBiomeFeatures.addLandCarvers(this);
-        DefaultBiomeFeatures.addDefaultLakes(this);
-        DefaultBiomeFeatures.addDungeons(this);
-        DefaultBiomeFeatures.addMineables(this);
-        DefaultBiomeFeatures.addDefaultOres(this);
-        DefaultBiomeFeatures.addDefaultDisks(this);
-        DefaultBiomeFeatures.addWaterBiomeOakTrees(this);
-        DefaultBiomeFeatures.addDefaultFlowers(this);
-        DefaultBiomeFeatures.addDefaultGrass(this);
-        DefaultBiomeFeatures.addDefaultMushrooms(this);
-        DefaultBiomeFeatures.addDefaultVegetation(this);
-        DefaultBiomeFeatures.addSprings(this);
-        this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.SEAGRASS.configure(new SeagrassFeatureConfig(48, 0.4D)).createDecoratedFeature(Decorator.TOP_SOLID_HEIGHTMAP.configure(DecoratorConfig.DEFAULT)));
-        DefaultBiomeFeatures.addFrozenTopLayer(this);
-        this.addSpawn(SpawnGroup.WATER_CREATURE, new SpawnEntry(EntityType.SQUID, 2, 1, 4));
-        this.addSpawn(SpawnGroup.WATER_CREATURE, new SpawnEntry(EntityType.SALMON, 5, 1, 5));
-        this.addSpawn(SpawnGroup.AMBIENT, new SpawnEntry(EntityType.BAT, 10, 8, 8));
-        this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.SPIDER, 100, 4, 4));
-        this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.ZOMBIE, 95, 4, 4));
-        this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.DROWNED, 100, 1, 1));
-        this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.ZOMBIE_VILLAGER, 5, 1, 1));
-        this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.SKELETON, 100, 4, 4));
-        this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.CREEPER, 100, 4, 4));
-        this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.SLIME, 100, 4, 4));
-        this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.ENDERMAN, 10, 1, 4));
-        this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.WITCH, 5, 1, 1));
+                .spawnSettings(spawnSettings.build()).generationSettings(generationSettings.build()).build();
     }
 }

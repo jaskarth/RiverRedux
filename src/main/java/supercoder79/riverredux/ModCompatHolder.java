@@ -1,16 +1,17 @@
 package supercoder79.riverredux;
 
-import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes;
+import net.fabricmc.fabric.api.biome.v1.OverworldBiomes;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ModCompatHolder {
-    public static Map<Identifier, Biome> BIOME_TO_RIVER = new HashMap<>();
-    static {
+    public static Map<Identifier, RegistryKey<Biome>> BIOME_TO_RIVER = new HashMap<>();
+    public static void init() {
         BIOME_TO_RIVER.put(traverse("mini_jungle"), RiverBiomes.TROPICAL);
         BIOME_TO_RIVER.put(traverse("desert_shrubland"), RiverBiomes.SANDY);
         BIOME_TO_RIVER.put(traverse("arid_highlands"), RiverBiomes.SANDY);
@@ -53,15 +54,15 @@ public class ModCompatHolder {
         return new Identifier("vanillaplusbiomes", name);
     }
 
-    public static void init() {
-        for (Identifier id : Registry.BIOME.getIds()) {
-            tryInit(id);
+    public static void add(Registry<Biome> biomes) {
+        for (Identifier id : biomes.getIds()) {
+            add(biomes, id);
         }
     }
 
-    public static void tryInit(Identifier id) {
+    private static void add(Registry<Biome> biomes, Identifier id) {
         if (BIOME_TO_RIVER.containsKey(id)) {
-            OverworldBiomes.setRiverBiome(Registry.BIOME.get(id), BIOME_TO_RIVER.get(id));
+            OverworldBiomes.setRiverBiome(biomes.getKey(biomes.get(id)).get(), BIOME_TO_RIVER.get(id));
         }
     }
 }

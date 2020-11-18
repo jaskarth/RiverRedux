@@ -1,56 +1,73 @@
 package supercoder79.riverredux;
 
-import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes;
+import net.fabricmc.fabric.api.biome.v1.OverworldBiomes;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.biome.BiomeKeys;
 import supercoder79.riverredux.biome.CarvedRiverBiome;
 import supercoder79.riverredux.biome.GravellyRiverBiome;
 import supercoder79.riverredux.biome.SandyRiverBiome;
 import supercoder79.riverredux.biome.TropicalRiverBiome;
 
 public class RiverBiomes {
-    public static Biome SANDY;
-    public static Biome GRAVELLY;
-    public static Biome TROPICAL;
-    public static Biome CARVED;
+    public static int getSkyColor(float temperature) {
+        float f = temperature / 3.0F;
+        f = MathHelper.clamp(f, -1.0F, 1.0F);
+        return MathHelper.hsvToRgb(0.62222224F - f * 0.05F, 0.5F + f * 0.1F, 1.0F);
+    }
+
+    public static RegistryKey<Biome> SANDY;
+    public static RegistryKey<Biome> GRAVELLY;
+    public static RegistryKey<Biome> TROPICAL;
+    public static RegistryKey<Biome> CARVED;
 
     public static void init() {
-        SANDY = Registry.register(Registry.BIOME, new Identifier("riverredux", "sandy_river"), new SandyRiverBiome());
-        OverworldBiomes.setRiverBiome(Biomes.DESERT, SANDY);
-        OverworldBiomes.setRiverBiome(Biomes.DESERT_LAKES, SANDY);
-        OverworldBiomes.setRiverBiome(Biomes.DESERT_HILLS, SANDY);
+        Biome sandy = Registry.register(BuiltinRegistries.BIOME, new Identifier("riverredux", "sandy_river"), SandyRiverBiome.create());
+        SANDY = BuiltinRegistries.BIOME.getKey(sandy).get();
 
-        GRAVELLY = Registry.register(Registry.BIOME, new Identifier("riverredux", "gravelly_river"), new GravellyRiverBiome());
-        OverworldBiomes.setRiverBiome(Biomes.TAIGA, GRAVELLY);
-        OverworldBiomes.setRiverBiome(Biomes.TAIGA_HILLS, GRAVELLY);
-        OverworldBiomes.setRiverBiome(Biomes.TAIGA_MOUNTAINS, GRAVELLY);
-        OverworldBiomes.setRiverBiome(Biomes.GIANT_SPRUCE_TAIGA, GRAVELLY);
-        OverworldBiomes.setRiverBiome(Biomes.GIANT_SPRUCE_TAIGA_HILLS, GRAVELLY);
-        OverworldBiomes.setRiverBiome(Biomes.GIANT_TREE_TAIGA, GRAVELLY);
-        OverworldBiomes.setRiverBiome(Biomes.GIANT_TREE_TAIGA_HILLS, GRAVELLY);
-        OverworldBiomes.setRiverBiome(Biomes.MOUNTAINS, GRAVELLY);
-        OverworldBiomes.setRiverBiome(Biomes.MOUNTAIN_EDGE, GRAVELLY);
-        OverworldBiomes.setRiverBiome(Biomes.WOODED_MOUNTAINS, GRAVELLY);
-        OverworldBiomes.setRiverBiome(Biomes.GRAVELLY_MOUNTAINS, GRAVELLY);
-        OverworldBiomes.setRiverBiome(Biomes.MODIFIED_GRAVELLY_MOUNTAINS, GRAVELLY);
+        OverworldBiomes.setRiverBiome(BiomeKeys.DESERT, SANDY);
+        OverworldBiomes.setRiverBiome(BiomeKeys.DESERT_LAKES, SANDY);
+        OverworldBiomes.setRiverBiome(BiomeKeys.DESERT_HILLS, SANDY);
 
-        TROPICAL = Registry.register(Registry.BIOME, new Identifier("riverredux", "tropical_river"), new TropicalRiverBiome());
-        OverworldBiomes.setRiverBiome(Biomes.JUNGLE, TROPICAL);
-        OverworldBiomes.setRiverBiome(Biomes.JUNGLE_EDGE, TROPICAL);
-        OverworldBiomes.setRiverBiome(Biomes.JUNGLE_HILLS, TROPICAL);
-        OverworldBiomes.setRiverBiome(Biomes.BAMBOO_JUNGLE, TROPICAL);
-        OverworldBiomes.setRiverBiome(Biomes.BAMBOO_JUNGLE_HILLS, TROPICAL);
-        OverworldBiomes.setRiverBiome(Biomes.MODIFIED_JUNGLE, TROPICAL);
-        OverworldBiomes.setRiverBiome(Biomes.MODIFIED_JUNGLE_EDGE, TROPICAL);
+        Biome gravelly = Registry.register(BuiltinRegistries.BIOME, new Identifier("riverredux", "gravelly_river"), GravellyRiverBiome.create());
+        GRAVELLY = BuiltinRegistries.BIOME.getKey(gravelly).get();
 
-        CARVED = Registry.register(Registry.BIOME, new Identifier("riverredux", "carved_river"), new CarvedRiverBiome());
-        OverworldBiomes.setRiverBiome(Biomes.BADLANDS, CARVED);
-        OverworldBiomes.setRiverBiome(Biomes.BADLANDS_PLATEAU, CARVED);
-        OverworldBiomes.setRiverBiome(Biomes.ERODED_BADLANDS, CARVED);
-        OverworldBiomes.setRiverBiome(Biomes.MODIFIED_BADLANDS_PLATEAU, CARVED);
-        OverworldBiomes.setRiverBiome(Biomes.MODIFIED_WOODED_BADLANDS_PLATEAU, CARVED);
-        OverworldBiomes.setRiverBiome(Biomes.WOODED_BADLANDS_PLATEAU, CARVED);
+        OverworldBiomes.setRiverBiome(BiomeKeys.TAIGA, GRAVELLY);
+        OverworldBiomes.setRiverBiome(BiomeKeys.TAIGA_HILLS, GRAVELLY);
+        OverworldBiomes.setRiverBiome(BiomeKeys.TAIGA_MOUNTAINS, GRAVELLY);
+        OverworldBiomes.setRiverBiome(BiomeKeys.GIANT_SPRUCE_TAIGA, GRAVELLY);
+        OverworldBiomes.setRiverBiome(BiomeKeys.GIANT_SPRUCE_TAIGA_HILLS, GRAVELLY);
+        OverworldBiomes.setRiverBiome(BiomeKeys.GIANT_TREE_TAIGA, GRAVELLY);
+        OverworldBiomes.setRiverBiome(BiomeKeys.GIANT_TREE_TAIGA_HILLS, GRAVELLY);
+        OverworldBiomes.setRiverBiome(BiomeKeys.MOUNTAINS, GRAVELLY);
+        OverworldBiomes.setRiverBiome(BiomeKeys.MOUNTAIN_EDGE, GRAVELLY);
+        OverworldBiomes.setRiverBiome(BiomeKeys.WOODED_MOUNTAINS, GRAVELLY);
+        OverworldBiomes.setRiverBiome(BiomeKeys.GRAVELLY_MOUNTAINS, GRAVELLY);
+        OverworldBiomes.setRiverBiome(BiomeKeys.MODIFIED_GRAVELLY_MOUNTAINS, GRAVELLY);
+
+        Biome tropical = Registry.register(BuiltinRegistries.BIOME, new Identifier("riverredux", "tropical_river"), TropicalRiverBiome.create());
+        TROPICAL = BuiltinRegistries.BIOME.getKey(tropical).get();
+
+        OverworldBiomes.setRiverBiome(BiomeKeys.JUNGLE, TROPICAL);
+        OverworldBiomes.setRiverBiome(BiomeKeys.JUNGLE_EDGE, TROPICAL);
+        OverworldBiomes.setRiverBiome(BiomeKeys.JUNGLE_HILLS, TROPICAL);
+        OverworldBiomes.setRiverBiome(BiomeKeys.BAMBOO_JUNGLE, TROPICAL);
+        OverworldBiomes.setRiverBiome(BiomeKeys.BAMBOO_JUNGLE_HILLS, TROPICAL);
+        OverworldBiomes.setRiverBiome(BiomeKeys.MODIFIED_JUNGLE, TROPICAL);
+        OverworldBiomes.setRiverBiome(BiomeKeys.MODIFIED_JUNGLE_EDGE, TROPICAL);
+
+        Biome carved = Registry.register(BuiltinRegistries.BIOME, new Identifier("riverredux", "carved_river"), CarvedRiverBiome.create());
+        CARVED = BuiltinRegistries.BIOME.getKey(carved).get();
+
+        OverworldBiomes.setRiverBiome(BiomeKeys.BADLANDS, CARVED);
+        OverworldBiomes.setRiverBiome(BiomeKeys.BADLANDS_PLATEAU, CARVED);
+        OverworldBiomes.setRiverBiome(BiomeKeys.ERODED_BADLANDS, CARVED);
+        OverworldBiomes.setRiverBiome(BiomeKeys.MODIFIED_BADLANDS_PLATEAU, CARVED);
+        OverworldBiomes.setRiverBiome(BiomeKeys.MODIFIED_WOODED_BADLANDS_PLATEAU, CARVED);
+        OverworldBiomes.setRiverBiome(BiomeKeys.WOODED_BADLANDS_PLATEAU, CARVED);
     }
 }

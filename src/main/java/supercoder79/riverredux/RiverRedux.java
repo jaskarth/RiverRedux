@@ -9,7 +9,5 @@ public class RiverRedux implements ModInitializer {
 	public void onInitialize() {
 		RiverBiomes.init();
 		ModCompatHolder.init();
-
-		RegistryEntryAddedCallback.event(Registry.BIOME).register(((i, id, biome) -> ModCompatHolder.tryInit(id)));
 	}
 }
