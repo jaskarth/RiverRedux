@@ -13,6 +13,9 @@ import supercoder79.riverredux.biome.GravellyRiverBiome;
 import supercoder79.riverredux.biome.SandyRiverBiome;
 import supercoder79.riverredux.biome.TropicalRiverBiome;
 
+import java.util.Objects;
+import java.util.Optional;
+
 public class RiverBiomes {
     public static int getSkyColor(float temperature) {
         float f = temperature / 3.0F;
@@ -69,5 +72,9 @@ public class RiverBiomes {
         OverworldBiomes.setRiverBiome(BiomeKeys.MODIFIED_BADLANDS_PLATEAU, CARVED);
         OverworldBiomes.setRiverBiome(BiomeKeys.MODIFIED_WOODED_BADLANDS_PLATEAU, CARVED);
         OverworldBiomes.setRiverBiome(BiomeKeys.WOODED_BADLANDS_PLATEAU, CARVED);
+    }
+
+    public static boolean isRiver(Optional<RegistryKey<Biome>> optional) {
+        return Objects.equals(optional, Optional.of(SANDY)) || Objects.equals(optional, Optional.of(GRAVELLY)) || Objects.equals(optional, Optional.of(TROPICAL)) || Objects.equals(optional, Optional.of(CARVED));
     }
 }
