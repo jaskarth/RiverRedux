@@ -8,6 +8,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.ConfiguredFeatures;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.SpringFeatureConfig;
 
@@ -18,8 +19,18 @@ public class RiverConfiguredFeatures {
             .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(64, 64, 128)))
             .spreadHorizontally().repeat(128).repeat(8);
 
+    public static final ConfiguredFeature<?, ?> RIVER_SUGARCANE = Feature.RANDOM_PATCH.configure(ConfiguredFeatures.Configs.SUGAR_CANE_CONFIG)
+            .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(60, 64, 68)))
+            .spreadHorizontally().repeat(16);
+
+    public static final ConfiguredFeature<?, ?> RIVER_SUGARCANE_TROPICAL = Feature.RANDOM_PATCH.configure(ConfiguredFeatures.Configs.SUGAR_CANE_CONFIG)
+            .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(60, 64, 68)))
+            .spreadHorizontally().repeat(48);
+
     public static void init() {
         register("river_waterfalls", RIVER_WATERFALLS);
+        register("river_sugarcane", RIVER_SUGARCANE);
+        register("river_sugarcane_tropical", RIVER_SUGARCANE_TROPICAL);
     }
 
     private static void register(String id, ConfiguredFeature<?, ?> feature) {

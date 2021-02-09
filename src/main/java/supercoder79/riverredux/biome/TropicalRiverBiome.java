@@ -43,6 +43,7 @@ public class TropicalRiverBiome {
         generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SEAGRASS_WARM);
         generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.PATCH_WATERLILLY);
         generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, RiverConfiguredFeatures.RIVER_WATERFALLS);
+        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, RiverConfiguredFeatures.RIVER_SUGARCANE_TROPICAL);
 
         return new Biome.Builder()
                 .precipitation(Biome.Precipitation.RAIN)

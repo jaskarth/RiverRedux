@@ -42,6 +42,7 @@ public class SandyRiverBiome {
 
         generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SEAGRASS_RIVER);
         generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, RiverConfiguredFeatures.RIVER_WATERFALLS);
+        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, RiverConfiguredFeatures.RIVER_SUGARCANE);
 
         return new Biome.Builder()
                 .precipitation(Biome.Precipitation.RAIN)
