@@ -11,6 +11,7 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders;
 import supercoder79.riverredux.RiverBiomes;
+import supercoder79.riverredux.RiverConfiguredFeatures;
 
 public class TropicalRiverBiome {
     public static Biome create() {
@@ -41,6 +42,7 @@ public class TropicalRiverBiome {
 
         generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SEAGRASS_WARM);
         generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.PATCH_WATERLILLY);
+        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, RiverConfiguredFeatures.RIVER_WATERFALLS);
 
         return new Biome.Builder()
                 .precipitation(Biome.Precipitation.RAIN)

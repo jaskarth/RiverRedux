@@ -11,6 +11,7 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders;
 import supercoder79.riverredux.RiverBiomes;
+import supercoder79.riverredux.RiverConfiguredFeatures;
 
 public class CarvedRiverBiome {
     public static Biome create() {
@@ -39,6 +40,7 @@ public class CarvedRiverBiome {
         DefaultBiomeFeatures.addFrozenTopLayer(generationSettings);
 
         generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SEAGRASS_RIVER);
+        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, RiverConfiguredFeatures.RIVER_WATERFALLS);
 
         return new Biome.Builder()
                 .precipitation(Biome.Precipitation.RAIN)
