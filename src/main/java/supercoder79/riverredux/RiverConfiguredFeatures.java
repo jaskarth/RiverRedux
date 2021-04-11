@@ -5,6 +5,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -16,15 +17,15 @@ public class RiverConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> RIVER_WATERFALLS = Feature.SPRING_FEATURE.configure(
             new SpringFeatureConfig(Blocks.WATER.getDefaultState().getFluidState(), true, 4, 1,
                     ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.GRAVEL, Blocks.DIRT)))
-            .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(64, 64, 128)))
+            .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(YOffset.fixed(64), YOffset.fixed(128))))
             .spreadHorizontally().repeat(128).repeat(8);
 
     public static final ConfiguredFeature<?, ?> RIVER_SUGARCANE = Feature.RANDOM_PATCH.configure(ConfiguredFeatures.Configs.SUGAR_CANE_CONFIG)
-            .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(60, 64, 68)))
+            .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(YOffset.fixed(60), YOffset.fixed(64))))
             .spreadHorizontally().repeat(16);
 
     public static final ConfiguredFeature<?, ?> RIVER_SUGARCANE_TROPICAL = Feature.RANDOM_PATCH.configure(ConfiguredFeatures.Configs.SUGAR_CANE_CONFIG)
-            .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(60, 64, 68)))
+            .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(YOffset.fixed(60), YOffset.fixed(64))))
             .spreadHorizontally().repeat(48);
 
     public static void init() {
