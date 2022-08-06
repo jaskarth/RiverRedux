@@ -39,7 +39,7 @@ public abstract class MixinOverworldBiomeBuilder {
             if (temperature.equals(this.nonFrozenTemperatureParameters) && humidity.equals(this.defaultParameter)) {
                 if (erosion.equals(MultiNoiseUtil.ParameterRange.combine(this.erosionParameters[2], this.erosionParameters[5])) && continentalness.equals(MultiNoiseUtil.ParameterRange.combine(this.coastContinentalness, this.farInlandContinentalness))) {
                     if (StackWalk.isVanillaInvocOfOBB()) {
-                        System.out.println("Injecting RiverRedux Biomes");
+//                        System.out.println("Injecting RiverRedux Biomes");
                         for(int i = 0; i < this.temperatureParameters.length; ++i) {
                             MultiNoiseUtil.ParameterRange parameterRange = this.temperatureParameters[i];
 
