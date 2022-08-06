@@ -35,11 +35,10 @@ public class GravellyRiverBiome {
         DefaultBiomeFeatures.addDefaultGrass(generationSettings);
         DefaultBiomeFeatures.addDefaultMushrooms(generationSettings);
         DefaultBiomeFeatures.addDefaultVegetation(generationSettings);
+        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, OceanPlacedFeatures.SEAGRASS_RIVER);
         DefaultBiomeFeatures.addSprings(generationSettings);
 
         DefaultBiomeFeatures.addFrozenTopLayer(generationSettings);
-
-        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, OceanPlacedFeatures.SEAGRASS_RIVER);
 //        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, RiverConfiguredFeatures.RIVER_WATERFALLS);
 
         return new Biome.Builder()

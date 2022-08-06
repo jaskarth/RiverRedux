@@ -29,44 +29,4 @@ public abstract class MixinBiomeSource {
     @Shadow public abstract RegistryEntry<Biome> getBiome(int x, int y, int z, MultiNoiseUtil.MultiNoiseSampler noise);
 
     @Shadow public abstract Set<RegistryEntry<Biome>> getBiomes();
-
-    /**
-     * @author SuperCoder79
-     * @reason Strictly debug only
-     */
-    @Nullable
-    public Pair<BlockPos, RegistryEntry<Biome>> locateBiome(
-            BlockPos origin,
-            int radius,
-            int horizontalBlockCheckInterval,
-            int verticalBlockCheckInterval,
-            Predicate<RegistryEntry<Biome>> predicate,
-            MultiNoiseUtil.MultiNoiseSampler noiseSampler,
-            WorldView world
-    ) {
-        Set<RegistryEntry<Biome>> set = this.getBiomes().stream().filter(predicate).collect(Collectors.toUnmodifiableSet());
-        if (set.isEmpty() && false) {
-            return null;
-        } else {
-            int i = Math.floorDiv(radius, horizontalBlockCheckInterval);
-            int[] is = MathHelper.stream(origin.getY(), world.getBottomY() + 1, world.getTopY(), verticalBlockCheckInterval).toArray();
-
-            for(BlockPos.Mutable mutable : BlockPos.iterateInSquare(BlockPos.ORIGIN, i, Direction.EAST, Direction.SOUTH)) {
-                int j = origin.getX() + mutable.getX() * horizontalBlockCheckInterval;
-                int k = origin.getZ() + mutable.getZ() * horizontalBlockCheckInterval;
-                int l = BiomeCoords.fromBlock(j);
-                int m = BiomeCoords.fromBlock(k);
-
-                for(int n : is) {
-                    int o = BiomeCoords.fromBlock(n);
-                    RegistryEntry<Biome> registryEntry = this.getBiome(l, o, m, noiseSampler);
-                    if (set.contains(registryEntry) || predicate.test(registryEntry)) {
-                        return Pair.of(new BlockPos(j, n, k), registryEntry);
-                    }
-                }
-            }
-
-            return null;
-        }
-    }
 }

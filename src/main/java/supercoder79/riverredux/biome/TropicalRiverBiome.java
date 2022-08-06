@@ -32,6 +32,7 @@ public class TropicalRiverBiome {
         DefaultBiomeFeatures.addWaterBiomeOakTrees(generationSettings);
         DefaultBiomeFeatures.addDefaultFlowers(generationSettings);
         DefaultBiomeFeatures.addDefaultGrass(generationSettings);
+        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_WATERLILY);
         DefaultBiomeFeatures.addDefaultMushrooms(generationSettings);
         DefaultBiomeFeatures.addDefaultVegetation(generationSettings);
         DefaultBiomeFeatures.addSprings(generationSettings);
@@ -39,7 +40,6 @@ public class TropicalRiverBiome {
         DefaultBiomeFeatures.addFrozenTopLayer(generationSettings);
 
         generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, OceanPlacedFeatures.SEAGRASS_RIVER);
-        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_WATERLILY);
 //        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, RiverConfiguredFeatures.RIVER_WATERFALLS);
 //        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, RiverConfiguredFeatures.RIVER_SUGARCANE_TROPICAL);
 

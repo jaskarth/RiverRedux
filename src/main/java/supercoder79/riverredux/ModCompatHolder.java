@@ -8,6 +8,7 @@ import net.minecraft.world.biome.Biome;
 import java.util.HashMap;
 import java.util.Map;
 
+@Deprecated
 public class ModCompatHolder {
     public static Map<Identifier, RegistryKey<Biome>> BIOME_TO_RIVER = new HashMap<>();
     public static void init() {
