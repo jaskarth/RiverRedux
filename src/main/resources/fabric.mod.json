@@ -13,6 +13,9 @@
   "entrypoints": {
     "main": [
       "supercoder79.riverredux.RiverRedux"
+    ],
+    "terrablender": [
+      "supercoder79.riverredux.RiverRedux"
     ]
   },
   "mixins": [
@@ -21,6 +24,7 @@
   "depends": {
     "fabricloader": ">=0.8.2+build.194",
     "fabric": "*",
-    "minecraft": ">=1.18-"
+    "minecraft": ">=1.18-",
+    "terrablender": "*"
   }
 }

@@ -13,6 +13,7 @@ group = project.maven_group
 
 repositories {
     maven { url = "https://maven.gegy.dev" }
+    maven { url = 'https://maven.minecraftforge.net/' }
 }
 
 dependencies {
@@ -22,12 +23,13 @@ dependencies {
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modRuntimeOnly ("supercoder79:databreaker:0.2.10") {
-        exclude module : "fabric-loader"
-    }
-//
-//    modRuntime ("com.github.mrmangohands:sodium-fabric:57f8a1013ba2a8661daf8a58ab6184eda3e4ac9e")
-//    modRuntime ("com.github.SuperCoder7979:phosphor-fabric:11d964bf07d44bdf6cbdbb7cce25ed9da81d9f78")
+//    modRuntimeOnly ("supercoder79:databreaker:0.2.10") {
+//        exclude module : "fabric-loader"
+//    }
+
+    // 1.19 not in sync with 1.19.1
+//    modImplementation "com.github.glitchfiend:TerraBlender-fabric:${minecraft_version}-${project.terrablender_version}"
+    modImplementation "com.github.glitchfiend:TerraBlender-fabric:1.19-${project.terrablender_version}"
 
     //Testing
 
