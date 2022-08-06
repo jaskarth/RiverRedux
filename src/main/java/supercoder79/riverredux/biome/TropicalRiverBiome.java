@@ -9,9 +9,7 @@ import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders;
 import supercoder79.riverredux.RiverBiomes;
-import supercoder79.riverredux.RiverConfiguredFeatures;
 
 public class TropicalRiverBiome {
     public static Biome create() {
@@ -21,11 +19,11 @@ public class TropicalRiverBiome {
                 .spawn(SpawnGroup.WATER_AMBIENT, new SpawnSettings.SpawnEntry(EntityType.SALMON, 5, 1, 5));
         DefaultBiomeFeatures.addBatsAndMonsters(spawnSettings);
         spawnSettings.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.DROWNED, 100, 1, 1));
-        GenerationSettings.Builder generationSettings = new GenerationSettings.Builder().surfaceBuilder(ConfiguredSurfaceBuilders.DESERT);
-        generationSettings.structureFeature(ConfiguredStructureFeatures.MINESHAFT);
-        generationSettings.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL);
+        GenerationSettings.Builder generationSettings = new GenerationSettings.Builder();//.surfaceBuilder(ConfiguredSurfaceBuilders.DESERT);
+//        generationSettings.structureFeature(ConfiguredStructureFeatures.MINESHAFT);
+//        generationSettings.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL);
         DefaultBiomeFeatures.addLandCarvers(generationSettings);
-        DefaultBiomeFeatures.addDefaultLakes(generationSettings);
+//        DefaultBiomeFeatures.addDefaultLakes(generationSettings);
         DefaultBiomeFeatures.addAmethystGeodes(generationSettings);
         DefaultBiomeFeatures.addDungeons(generationSettings);
         DefaultBiomeFeatures.addMineables(generationSettings);
@@ -40,16 +38,16 @@ public class TropicalRiverBiome {
 
         DefaultBiomeFeatures.addFrozenTopLayer(generationSettings);
 
-        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SEAGRASS_WARM);
-        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.PATCH_WATERLILLY);
-        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, RiverConfiguredFeatures.RIVER_WATERFALLS);
-        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, RiverConfiguredFeatures.RIVER_SUGARCANE_TROPICAL);
+        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, OceanPlacedFeatures.SEAGRASS_RIVER);
+        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_WATERLILY);
+//        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, RiverConfiguredFeatures.RIVER_WATERFALLS);
+//        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, RiverConfiguredFeatures.RIVER_SUGARCANE_TROPICAL);
 
         return new Biome.Builder()
                 .precipitation(Biome.Precipitation.RAIN)
-                .category(Biome.Category.RIVER)
-                .depth(-0.5F)
-                .scale(0.0F)
+//                .category(Biome.Category.RIVER)
+//                .depth(-0.5F)
+//                .scale(0.0F)
                 .temperature(0.5F)
                 .downfall(0.5F)
                 .effects(new BiomeEffects.Builder()

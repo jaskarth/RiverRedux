@@ -1,6 +1,5 @@
 package supercoder79.riverredux;
 
-import net.fabricmc.fabric.api.biome.v1.OverworldBiomes;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
@@ -61,8 +60,8 @@ public class ModCompatHolder {
     }
 
     private static void add(Registry<Biome> biomes, Identifier id) {
-        if (BIOME_TO_RIVER.containsKey(id)) {
-            OverworldBiomes.setRiverBiome(biomes.getKey(biomes.get(id)).get(), BIOME_TO_RIVER.get(id));
-        }
+//        if (BIOME_TO_RIVER.containsKey(id)) {
+//            OverworldBiomes.setRiverBiome(biomes.getKey(biomes.get(id)).get(), BIOME_TO_RIVER.get(id));
+//        }
     }
 }

@@ -9,10 +9,7 @@ import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import supercoder79.riverredux.RiverBiomes;
-import supercoder79.riverredux.RiverConfiguredFeatures;
 
 public class GravellyRiverBiome {
     public static Biome create() {
@@ -23,11 +20,11 @@ public class GravellyRiverBiome {
         spawnSettings.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.DROWNED, 100, 1, 1));
 
         // TODO: register
-        GenerationSettings.Builder generationSettings = new GenerationSettings.Builder().surfaceBuilder(new ConfiguredSurfaceBuilder<>(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRAVEL_CONFIG));
-        generationSettings.structureFeature(ConfiguredStructureFeatures.MINESHAFT);
-        generationSettings.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL);
+        GenerationSettings.Builder generationSettings = new GenerationSettings.Builder();//.surfaceBuilder(new ConfiguredSurfaceBuilder<>(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRAVEL_CONFIG));
+//        generationSettings.structureFeature(ConfiguredStructureFeatures.MINESHAFT);
+//        generationSettings.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL);
         DefaultBiomeFeatures.addLandCarvers(generationSettings);
-        DefaultBiomeFeatures.addDefaultLakes(generationSettings);
+//        DefaultBiomeFeatures.addDefaultLakes(generationSettings);
         DefaultBiomeFeatures.addAmethystGeodes(generationSettings);
         DefaultBiomeFeatures.addDungeons(generationSettings);
         DefaultBiomeFeatures.addMineables(generationSettings);
@@ -42,14 +39,12 @@ public class GravellyRiverBiome {
 
         DefaultBiomeFeatures.addFrozenTopLayer(generationSettings);
 
-        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SEAGRASS_RIVER);
-        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, RiverConfiguredFeatures.RIVER_WATERFALLS);
+        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, OceanPlacedFeatures.SEAGRASS_RIVER);
+//        generationSettings.feature(GenerationStep.Feature.VEGETAL_DECORATION, RiverConfiguredFeatures.RIVER_WATERFALLS);
 
         return new Biome.Builder()
                 .precipitation(Biome.Precipitation.RAIN)
-                .category(Biome.Category.RIVER)
-                .depth(-0.5F)
-                .scale(0.0F)
+//                .category(Biome.Category.RIVER)
                 .temperature(0.5F)
                 .downfall(0.5F)
                 .effects(new BiomeEffects.Builder()
