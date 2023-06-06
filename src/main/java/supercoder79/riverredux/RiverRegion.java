@@ -1,9 +1,9 @@
 package supercoder79.riverredux;
 
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import terrablender.api.ParameterUtils;

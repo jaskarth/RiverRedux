@@ -4,8 +4,6 @@ import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.BiasedToBottomIntProvider;
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.heightprovider.UniformHeightProvider;
@@ -32,6 +30,6 @@ public class RiverConfiguredFeatures {
     }
 
     private static void register(String id, ConfiguredFeature<?, ?> feature) {
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier("riverredux", id), feature);
+//        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier("riverredux", id), feature);
     }
 }

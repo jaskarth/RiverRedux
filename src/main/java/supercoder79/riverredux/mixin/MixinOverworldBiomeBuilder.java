@@ -2,7 +2,7 @@ package supercoder79.riverredux.mixin;
 
 
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
