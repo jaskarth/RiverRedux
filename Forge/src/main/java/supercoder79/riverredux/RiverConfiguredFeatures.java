@@ -2,7 +2,6 @@ package supercoder79.riverredux;
 
 
 import net.minecraft.core.Registry;
-import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
@@ -27,6 +26,6 @@ public class RiverConfiguredFeatures {
     }
 
     private static void register(String id, ConfiguredFeature<?, ?> feature) {
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation("riverredux", id), feature);
+//        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation("riverredux", id), feature);
     }
 }
