@@ -1,0 +1,38 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+#issueTrackerURL = ""
+license = "GNU LGPL 3.0"
+
+[[mods]]
+modId = "riverredux"
+version = "${version}"
+displayName = "River Redux"
+authors = "jaskarth"
+description = '''
+Improves Minecraft's river biomes!
+'''
+logoFile = "assets/riverredux/icon.png"
+
+[[mixins]]
+config = "riverredux.mixins.json"
+
+[[dependencies.riverredux]]
+modId = "neoforge"
+mandatory = true
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.riverredux]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.riverredux]]
+modId="terrablender"
+mandatory=true
+versionRange="[4.1.0.0,)"
+ordering="NONE"
+side="BOTH"

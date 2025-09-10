@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.jaskarth.riverredux.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "riverredux.refmap.json",
+  "mixins": [
+    "MixinOverworldBiomeBuilder"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
